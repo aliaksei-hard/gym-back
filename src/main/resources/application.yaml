@@ -1,0 +1,16 @@
+spring:
+  application:
+   name:
+    gym-back
+
+
+server:
+  servlet:
+    context-path: /api
+
+jwt:
+  secret:
+    3e1c53937777c7a10f79bfbe83700f40ebeb95d05403b3084cc4176ba759430e
+logging:
+  level:
+    web: debug
