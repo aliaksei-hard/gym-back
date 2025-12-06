@@ -3,7 +3,7 @@ package com.learning.gymback.service;
 import com.learning.gymback.entity.Slot;
 import com.learning.gymback.mapper.SlotMapper;
 import com.learning.gymback.repository.SlotRepository;
-import com.learning.gymback.repository.UserRepository;
+import com.learning.gymback.security.repository.SecurityUserRepository;
 import com.learning.gymback.security.dto.SlotCreateRequestDto;
 import com.learning.gymback.security.entity.SecurityUser;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +19,12 @@ import java.util.Optional;
 public class SlotService {
 
     private final SlotRepository slotRepository;
-    private final UserRepository userRepository;
+    private final SecurityUserRepository securityUserRepository;
     private final SlotMapper slotMapper;
 
 
     public Slot createSlot(SlotCreateRequestDto dto) {
-        SecurityUser trainer = userRepository.findById(dto.trainerId())
+        SecurityUser trainer = securityUserRepository.findById(dto.trainerId())
                 .orElseThrow(() -> new IllegalArgumentException("No trainer with this id found"));
 
         List<Slot> conflicts = slotRepository.findTimeConflicts(trainer, dto.startTime(), dto.endTime());

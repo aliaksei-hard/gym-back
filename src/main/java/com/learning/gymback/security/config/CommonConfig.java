@@ -1,6 +1,6 @@
 package com.learning.gymback.security.config;
 
-import com.learning.gymback.repository.UserRepository;
+import com.learning.gymback.security.repository.SecurityUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class CommonConfig {
 
-    private final UserRepository userRepository;
+    private final SecurityUserRepository securityUserRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        return username -> securityUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
     }
 
     @Bean

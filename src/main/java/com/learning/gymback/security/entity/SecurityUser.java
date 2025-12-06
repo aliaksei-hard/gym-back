@@ -28,14 +28,17 @@ public class SecurityUser implements UserDetails {
     private Long id;
 
     private String email;
+
     @Column(name = "user_name")
     private String username;
     private String password;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "roles")
     @Enumerated(EnumType.STRING)
-    private List<Role> roles;
+    private Set<Role> roles;
+
     @Column(name = "created_at")
     private Long createdAt;
 

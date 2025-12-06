@@ -6,7 +6,7 @@ import com.learning.gymback.security.constants.Role;
 import com.learning.gymback.security.dto.UserAuthRequestDto;
 import com.learning.gymback.security.dto.UserRegisterRequestDto;
 import com.learning.gymback.security.entity.SecurityUser;
-import com.learning.gymback.repository.UserRepository;
+import com.learning.gymback.security.repository.SecurityUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -25,7 +26,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    private final UserRepository userRepository;
+    private final SecurityUserRepository securityUserRepository;
     private final UserDetailsService userDetailsService;
     private final UserProfileRepository profileRepository;
 
@@ -33,7 +34,7 @@ public class AuthService {
         UserProfile profile = mapToProfile(dto);
         SecurityUser securityUser = mapToUser(dto, profile);
 
-        return userRepository.save(securityUser);
+        return securityUserRepository.save(securityUser);
     }
 
     public String auth(UserAuthRequestDto dto) {
@@ -47,7 +48,7 @@ public class AuthService {
                 .username(dto.getUsername())
                 .email(dto.getEmail())
                 .password(passwordEncoder.encode(dto.getPassword()))
-                .roles(List.of(Role.USER))
+                .roles(Set.of(Role.USER))
                 .profile(profile)
                 .build();
     }
