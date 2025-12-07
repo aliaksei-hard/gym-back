@@ -1,19 +1,14 @@
 package com.learning.gymback.dto;
 
 import com.learning.gymback.security.constants.Role;
-import lombok.Data;
+import lombok.Builder;
 
-import java.util.List;
+import java.util.Set;
 
-@Data
-public class UserAdminResponseDto {
-
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String username;
-    private List<Role> roles;
-    private String email;
-
-
-}
+@Builder
+public record UserAdminResponseDto(Long id,
+        String firstName,
+        String lastName,
+        String username,
+        Set<Role> roles,
+        String email) {}

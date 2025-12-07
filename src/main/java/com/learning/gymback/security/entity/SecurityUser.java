@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,7 +41,6 @@ public class SecurityUser implements UserDetails {
     @Column(name = "created_at")
     private Long createdAt;
 
-    // OneToOne to domain profile; optional=true if anonymous profiles allowed
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id")
     private UserProfile profile;

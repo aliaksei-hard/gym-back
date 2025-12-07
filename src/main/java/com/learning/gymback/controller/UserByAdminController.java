@@ -40,14 +40,14 @@ public class UserByAdminController {
         return userAdminResponseDto != null ? ResponseEntity.ok(userAdminResponseDto) : ResponseEntity.notFound().build();
     }
 
-    //user can be granted any role by admin
-//    @PutMapping("/v1/users")
-//    public ResponseEntity<UserAdminResponseDto> changeUserByAdmin(@RequestBody UserChangeByAdminReqDto dto) {
-//        log.info("PUT /v1/users/{}", dto);
-//        UserAdminResponseDto responseDto = userService.changeUserByAdmin(dto);
-//
-//        return responseDto != null ? ResponseEntity.ok(responseDto) : ResponseEntity.notFound().build();
-//    }
+//    user can be granted any role by admin
+    @PutMapping("/v1/users")
+    public ResponseEntity<UserAdminResponseDto> changeUserByAdmin(@RequestBody UserChangeByAdminReqDto dto) {
+        log.info("PUT /v1/users/{}", dto);
+        UserAdminResponseDto responseDto = userService.changeUserByAdmin(dto);
+
+        return responseDto != null ? ResponseEntity.ok(responseDto) : ResponseEntity.notFound().build();
+    }
 
     @GetMapping("/v1/users/all")
     public ResponseEntity<List<SecurityUser>> getUsersForAdmin() {

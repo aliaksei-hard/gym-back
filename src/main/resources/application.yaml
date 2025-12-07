@@ -2,11 +2,15 @@ spring:
   application:
    name:
     gym-back
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 
 server:
   servlet:
     context-path: /api
+
 
 jwt:
   secret:
