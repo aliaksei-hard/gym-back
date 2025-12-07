@@ -4,7 +4,9 @@ spring:
     gym-back
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+
+    show-sql: true
 
 
 server:

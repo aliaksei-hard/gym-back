@@ -17,8 +17,8 @@ public class Slot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "trainer_id", foreignKey = @ForeignKey(name = "fk_slots_trainer"))
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "trainer_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_slots_trainer"))
     private SecurityUser trainer;
 
     @Column(name = "start_time")
@@ -32,9 +32,5 @@ public class Slot {
     private boolean canceled;
     private String reason;
     private String location;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by", foreignKey = @ForeignKey(name = "fk_slots_created_by"))
-    private SecurityUser createdBy;
 
 }

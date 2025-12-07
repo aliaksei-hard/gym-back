@@ -3,6 +3,7 @@ package com.learning.gymback.service;
 import com.learning.gymback.entity.Slot;
 import com.learning.gymback.mapper.SlotMapper;
 import com.learning.gymback.repository.SlotRepository;
+import com.learning.gymback.security.constants.Role;
 import com.learning.gymback.security.repository.SecurityUserRepository;
 import com.learning.gymback.security.dto.SlotCreateRequestDto;
 import com.learning.gymback.security.entity.SecurityUser;
@@ -27,6 +28,10 @@ public class SlotService {
         SecurityUser trainer = securityUserRepository.findById(dto.trainerId())
                 .orElseThrow(() -> new IllegalArgumentException("No trainer with this id found"));
 
+        if (!trainer.getRoles().contains(Role.TRAINER)) {
+            throw new IllegalArgumentException("User with this Id doesn`t have role TRAINER");
+        }
+
         List<Slot> conflicts = slotRepository.findTimeConflicts(trainer, dto.startTime(), dto.endTime());
         if (conflicts != null && !conflicts.isEmpty()) {
             throw new IllegalArgumentException("There are already slots in this time period, reschedule");
@@ -34,8 +39,6 @@ public class SlotService {
 
         Slot slot = slotMapper.toEntity(dto);
         slot.setTrainer(trainer);
-        slot.setCreatedBy(trainer);
-
 
         Slot saved = slotRepository.save(slot);
 

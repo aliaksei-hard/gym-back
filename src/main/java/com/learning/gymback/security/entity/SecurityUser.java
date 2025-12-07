@@ -1,5 +1,7 @@
 package com.learning.gymback.security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.learning.gymback.entity.Slot;
 import com.learning.gymback.entity.user_profiles.UserProfile;
 import com.learning.gymback.security.constants.Role;
 import jakarta.persistence.*;
@@ -9,9 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Setter
@@ -19,7 +19,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "security_users")
+@Table(name = "security_users", uniqueConstraints = @UniqueConstraint(columnNames = "user_name"))
 public class SecurityUser implements UserDetails {
 
     @Id
@@ -44,6 +44,10 @@ public class SecurityUser implements UserDetails {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id")
     private UserProfile profile;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER)
+    private List<Slot> slots = new ArrayList<>();
 
     @NullMarked
     @Override

@@ -26,7 +26,9 @@ public class UserByAdminController {
     public ResponseEntity<UserAdminResponseDto> getUserForAdminByUsername(@RequestParam("username") String username) {
         log.info("/v1/users/{}", username);
         SecurityUser securityUser = userService.getUserByUsername(username);
-        UserAdminResponseDto userAdminResponseDto = userForAdminMapper.toUserAdminResponseDto(securityUser);
+        UserAdminResponseDto userAdminResponseDto = mapToResponseDto(securityUser);
+
+//        UserAdminResponseDto userAdminResponseDto = userForAdminMapper.toUserAdminResponseDto(securityUser);
 
         return userAdminResponseDto != null ? ResponseEntity.ok(userAdminResponseDto) : ResponseEntity.notFound().build();
     }
@@ -35,7 +37,8 @@ public class UserByAdminController {
     public ResponseEntity<UserAdminResponseDto> getUserForAdminById(@PathVariable("id") long id) {
         log.info("/v1/users/{}", id);
         SecurityUser securityUser = userService.getUserById(id);
-        UserAdminResponseDto userAdminResponseDto = userForAdminMapper.toUserAdminResponseDto(securityUser);
+//        UserAdminResponseDto userAdminResponseDto = userForAdminMapper.toUserAdminResponseDto(securityUser);
+        UserAdminResponseDto userAdminResponseDto = mapToResponseDto(securityUser);
 
         return userAdminResponseDto != null ? ResponseEntity.ok(userAdminResponseDto) : ResponseEntity.notFound().build();
     }
@@ -55,6 +58,19 @@ public class UserByAdminController {
         List<SecurityUser> securityUsers = userService.getAllUsersByAdmin();
 
         return securityUsers != null ? ResponseEntity.ok(securityUsers) : ResponseEntity.notFound().build();
+    }
+
+    private UserAdminResponseDto mapToResponseDto(SecurityUser securityUser) {
+        return UserAdminResponseDto.builder()
+                .username(securityUser.getUsername())
+                .lastName(securityUser.getProfile().getLastName())
+                .firstName(securityUser.getProfile().getFirstName())
+                .email(securityUser.getEmail())
+                .id(securityUser.getId())
+                .roles(securityUser.getRoles())
+                .bio(securityUser.getProfile().getBio())
+                .phone(securityUser.getProfile().getPhone())
+                .build();
     }
 
 
