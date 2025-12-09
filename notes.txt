@@ -1,0 +1,16 @@
+convert to Base64 :
+ POWERSHELL:  [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("securityUser:20018c5c-d370-4429-8ac9-4bfb00d280b7"))
+
+generate jwt secret {BASH}: openssl rand -hex 32
+
+
+[User] 1---* [Booking] *---1 [Slot] *---1 [Trainer]
+
+User(id, name, email, role)
+Trainer(id, userId?, name, dailyHourLimit)
+Slot(id, trainerId, start, duration, capacity, type, canceled, createdBy)
+Booking(id, slotId, userId, participantsCount, status, createdAt, cancelReason)
+Log(id, actorId, action, entityType, entityId, reason, timestamp)
+
+1) create all models, pay
+2) all logic
