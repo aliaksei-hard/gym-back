@@ -60,6 +60,8 @@ public class UserService {
                 .firstName(userProfile.getFirstName())
                 .lastName(userProfile.getLastName())
                 .roles(securityUser.getRoles())
+                .bio(userProfile.getBio())
+                .phone(userProfile.getPhone())
                 .build();
 
     }

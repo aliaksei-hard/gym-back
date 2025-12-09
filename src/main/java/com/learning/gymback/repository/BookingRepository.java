@@ -1,9 +1,9 @@
 package com.learning.gymback.repository;
 
-import com.learning.gymback.entity.user_profiles.UserProfile;
+import com.learning.gymback.entity.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserProfileRepository extends JpaRepository <UserProfile, Long> {
+public interface BookingRepository extends JpaRepository<Booking, Long> {
 }

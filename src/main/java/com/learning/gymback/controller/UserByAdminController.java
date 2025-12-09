@@ -44,6 +44,7 @@ public class UserByAdminController {
     @PutMapping("/v1/users")
     public ResponseEntity<UserAdminResponseDto> changeUserByAdmin(@RequestBody UserChangeByAdminReqDto dto) {
         log.info("PUT /v1/users/{}", dto);
+        //todo id , bio, phone - returns null to FE
         UserAdminResponseDto responseDto = userService.changeUserByAdmin(dto);
 
         return responseDto != null ? ResponseEntity.ok(responseDto) : ResponseEntity.notFound().build();
