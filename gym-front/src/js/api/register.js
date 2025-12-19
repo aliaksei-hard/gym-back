@@ -1,5 +1,4 @@
 import { api } from '../utils/http-util.js'
-import {login} from "./auth.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');

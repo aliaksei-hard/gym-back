@@ -39,6 +39,10 @@ export default {
     new HtmlWebpackPlugin({
       template: './src/html/user_main_page.html',
       filename: 'user_main_page.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/html/admin.html',
+      filename: 'admin.html'
     })
   ],
   devServer: {
