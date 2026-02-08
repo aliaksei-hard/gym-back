@@ -7,14 +7,57 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Main Page</title>
     <script src="/src/js/api/user_main_page.js" defer></script>
+    <link href="src/css/user_main_page.css" rel="stylesheet">
+    <link href="src/css/main.css" rel="stylesheet">
 </head>
 <body>
-<h1>Here will be main page</h1>
-<div>
-    <h3>Some table here</h3>
+<div class="main-page-header">
+    <div class="left-side">
+        <div class="hantel-icon-blue left-side-format">
+            <img src="src/img/hantel.svg" alt="dumbbel icon">
+        </div>
+        <p class="main-page-header-font left-side-format">FitnessBooking</p>
+        <div class="left-side-format main-page-header-btn-format">
+            <button type="button" id="calendar">Calendar</button>
+        </div>
+        <div class="left-side-format main-page-header-btn-format">
+            <button type="button" id="my-bookings">My Bookings</button>
+        </div>
+        <div class="left-side-format main-page-header-btn-format">
+            <button type="button" id="trainers">Trainers</button>
+        </div>
+    </div>
+    <div class="right-side">
+        <form id="search-form">
+            <div>
+                <label for="search-form"></label>
+                <input class="input-form" type="search" name="search"
+                       placeholder="Search trainers, sessions" required>
+            </div>
+            <button type="submit" class="search-btn-hidden" value="Submit"></button>
+        </form>
+        <div class="user-info">
+            <div class="hantel-icon-blue">
+                <img src="src/img/hantel.svg" alt="dumbbel icon">
+            </div>
+            <div class="user-menu-dropdown">
+                <button id="user-menu-btn" class="user-menu-btn" aria-haspopup="true" aria-expanded="false"
+                        type="button">
+                    <span class="user-name">User</span>
+                    <span class="caret" aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="user-menu-btn" hidden>
+                    <li role="none"><a role="menuitem" href="/profile" class="dropdown-item">Profile</a></li>
+                    <li role="none"><a role="menuitem" href="/settings" class="dropdown-item">Settings</a></li>
+                    <li role="none">
+                        <button role="menuitem" class="dropdown-item" id="logout-btn" type="button">Logout</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </div>
-<div>
-    <button type="button" id='to-admin-page'>To Admin Page</button>
-</div>
+
 </body>
 </html>

@@ -1,0 +1,112 @@
+body {
+    display: flex;
+}
+
+.main-page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+
+}
+
+.right-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.left-side-format {
+    margin: 20px;
+}
+
+.main-page-header-font {
+    font-family: Inter, serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+    vertical-align: middle;
+}
+
+.main-page-header-btn-format {
+
+    padding-left:0;
+    padding-right: 0;
+
+}
+
+/* css */
+.main-page-header button {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+/* hover and keyboard focus (accessible) */
+.main-page-header button:hover,
+.main-page-header button:focus-visible {
+    background-color: rgba(0, 123, 255, 0.08); /* adjust color/alpha as needed */
+    outline: none;
+}
+
+/* stronger feedback when pressed */
+.main-page-header button:active {
+    background-color: rgba(0, 123, 255, 0.16);
+}
+
+/* visible focus ring for keyboard users */
+.main-page-header button:focus-visible {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.18);
+}
+
+/* respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .main-page-header button {
+        transition: none;
+    }
+}
+
+
+.search-btn-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.hantel-icon-blue {
+    width: 30px;
+    height: 30px;
+    background: #0284C7;
+    border-radius: 7px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
