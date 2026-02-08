@@ -4,35 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Booking</title>
-    <link href="src/css/login.css" rel="stylesheet">
+    <link href="src/css/starting-pages.css" rel="stylesheet">
+    <link href="src/css/main.css" rel="stylesheet">
 </head>
 <script src="src/index.js" defer type="module"></script>
 <body>
 <div class="login-container background_white">
-    <!-- Your app will be mounted here -->
     <div id="auth-section">
         <div class="welcome-logo">
             <div class="hantel-icon-blue">
                 <img src="src/img/hantel.svg" alt="dumbbel icon">
             </div>
-
             <p>FitnessBooking</p>
         </div>
         <div id="welcome-back-header">
             <p class="welcome-back">Welcome back</p>
             <p class="sign-in">Sign in to your account to continue</p>
         </div>
-
         <form id="login-form" onsubmit="event.preventDefault()">
             <p class="email-address">Email address</p>
             <div>
                 <label for="email"></label>
-                <input class="input-form" type="email" id="email" name="email" placeholder="you@example@com" required>
+                <input class="input-form" type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
             <p class="password">Password</p>
             <div>
                 <label for="password"></label>
-                <input class="input-form" type="password" id="password" name="password" placeholder="Enter your password" required>
+                <input class="input-form" type="password" id="password" name="password"
+                       placeholder="Enter your password" required>
             </div>
             <button type="submit" class="sign-in-btn">Sign in</button>
         </form>
@@ -44,7 +43,6 @@
         <button class="register-btn" type="button" onclick="window.location.href='register.html'">Register</button>
     </div>
 </div>
-
 <div class="login-container background_blue">
     <div class="welcome-text">
         <img class="hantel-icon" src="src/img/hantel.svg" alt="dumbbel icon">
@@ -57,7 +55,6 @@
             <div class="check-icon">
                 <img src="src/img/round_check.svg" alt="ups">
             </div>
-
             <div class="pros-text">
                 <div class="pros-heading">Expert trainers</div>
                 <div class="pros-description">Access certified professionals for personalized training</div>
@@ -67,13 +64,11 @@
             <div class="check-icon">
                 <img src="src/img/round_check.svg" alt="ups">
             </div>
-
             <div class="pros-text">
                 <div class="pros-heading">Flexible scheduling</div>
                 <div class="pros-description">Book sessions that fit your busy lifestyle</div>
             </div>
         </div>
-
     </div>
 </div>
 </body>

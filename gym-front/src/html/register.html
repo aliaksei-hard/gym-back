@@ -4,36 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Booking</title>
-    <script src="src/js/api/register.js" defer></script>
+    <link href="src/css/starting-pages.css" rel="stylesheet">
+    <link href="src/css/main.css" rel="stylesheet">
+    <script type="module" src="../js/api/register.js" defer></script>
 </head>
 <body>
-<div id="app">
-    <!-- Your app will be mounted here -->
-    <div id="header">
-        <h2>FitnessBooking</h2>
-        <h3>New user registration</h3>
-    </div>
+<div class="login-container background_white">
     <div id="register-section">
+        <div class="welcome-logo">
+            <div class="hantel-icon-blue">
+                <img src="src/img/hantel.svg" alt="dumbbel icon">
+            </div>
+            <p>FitnessBooking</p>
+        </div>
+        <div>
+            <p>New user registration</p>
+        </div>
         <form id="register-form" onsubmit="event.preventDefault()">
-            <h3>Register</h3>
+            <p class="email-address">Email address</p>
             <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email"></label>
+                <input class="input-form" type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
+            <p class="password">Password</p>
             <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password"></label>
+                <input class="input-form" type="password" id="password" name="password"
+                       placeholder="Enter your password" required>
             </div>
+            <p class="password">First name</p>
             <div>
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required>
+                <label for="firstName"></label>
+                <input class="input-form" type="text" id="firstName" name="firstName" placeholder="Enter first name"
+                       required>
             </div>
+            <p class="password">Last name</p>
             <div>
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required>
+                <label for="lastName"></label>
+                <input class="input-form" type="text" id="lastName" name="lastName" placeholder="Enter last name"
+                       required>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit" class="sign-in-btn">Register</button>
         </form>
+    </div>
+</div>
+<div class="login-container background_blue">
+    <div class="welcome-text">
+        <img class="hantel-icon" src="src/img/hantel.svg" alt="dumbbel icon">
+        <p class="transform-journey">Transform your fitness journey</p>
+        <p class="book-sessions">Book sessions with top trainers, track your progress, and
+            achieve your fitness goals with FitnessBooking.</p>
+    </div>
+    <div class="pros-list">
+        <div class="pros-item">
+            <div class="check-icon">
+                <img src="src/img/round_check.svg" alt="ups">
+            </div>
+            <div class="pros-text">
+                <div class="pros-heading">Expert trainers</div>
+                <div class="pros-description">Access certified professionals for personalized training</div>
+            </div>
+        </div>
+        <div class="pros-item">
+            <div class="check-icon">
+                <img src="src/img/round_check.svg" alt="ups">
+            </div>
+            <div class="pros-text">
+                <div class="pros-heading">Flexible scheduling</div>
+                <div class="pros-description">Book sessions that fit your busy lifestyle</div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
