@@ -111,6 +111,10 @@ body {
     vertical-align: middle;
 }
 
+.pros-description {
+
+}
+
 /*-------------LEFT SIDE-------------*/
 
 .welcome-back {
@@ -238,8 +242,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /*overflow: hidden; !* 👈 this is the key *!*/
 }
 
 .hantel-icon-blue img {
