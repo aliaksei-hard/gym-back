@@ -4,32 +4,26 @@ body {
     display: flex
 }
 
-.login-container.background_blue {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    box-sizing: border-box;
-    padding: 1rem;
-    color: #E0F2FE;
-}
-
-.login-container.background_white {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    box-sizing: border-box;
-    padding: 1rem;
-    color: #020202;
-}
-
 .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 50%;
     height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
     font-family: 'Inter', sans-serif;
+}
+.login-container.background_blue {
+    color: #E0F2FE;
+    background: linear-gradient(135deg, #0284C7 0%, #075985 100%);
+}
+.login-container.background_white {
+    color: #020202;
+}
+.background_blue {
+    background: linear-gradient(135deg, #0284C7 0%, #075985 100%);
 }
 
 .background_blue {
