@@ -25,6 +25,7 @@
     "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
+    "@calendarjs/ce": "^1.0.6",
     "axios": "^1.13.2",
     "vite": "^7.3.1"
   },

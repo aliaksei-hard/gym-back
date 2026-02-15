@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "trainer": {
+      "id": 1,
+      "email": "alex@m.by",
+      "password": "$2a$10$szvJPT6k5At0yZTuDI5DAek6VCnl.EhoQnKa9XyzGPeIwO4pGPfIm",
+      "roles": [
+        "USER",
+        "TRAINER",
+        "CLUB_ADMIN"
+      ],
+      "createdAt": 1765368096,
+      "profile": {
+        "bio": null,
+        "firstName": "alex",
+        "id": 1,
+        "lastName": "hard",
+        "phone": null
+      },
+      "accountNonExpired": true,
+      "accountNonLocked": true,
+      "authorities": [
+        {
+          "authority": "TRAINER"
+        },
+        {
+          "authority": "USER"
+        },
+        {
+          "authority": "CLUB_ADMIN"
+        }
+      ],
+      "credentialsNonExpired": true,
+      "enabled": true,
+      "username": "alex@m.by"
+    },
+    "startTime": 1778223600,
+    "duration": 3600,
+    "endTime": 1778227200,
+    "capacity": 2,
+    "type": "test_type_1",
+    "canceled": false,
+    "reason": "reason_1",
+    "location": "test_loc_1"
+  },
+  {
+    "id": 2,
+    "trainer": {
+      "id": 1,
+      "email": "alex@m.by",
+      "password": "$2a$10$szvJPT6k5At0yZTuDI5DAek6VCnl.EhoQnKa9XyzGPeIwO4pGPfIm",
+      "roles": [
+        "USER",
+        "TRAINER",
+        "CLUB_ADMIN"
+      ],
+      "createdAt": 1765368096,
+      "profile": {
+        "bio": null,
+        "firstName": "alex",
+        "id": 1,
+        "lastName": "hard",
+        "phone": null
+      },
+      "accountNonExpired": true,
+      "accountNonLocked": true,
+      "authorities": [
+        {
+          "authority": "TRAINER"
+        },
+        {
+          "authority": "USER"
+        },
+        {
+          "authority": "CLUB_ADMIN"
+        }
+      ],
+      "credentialsNonExpired": true,
+      "enabled": true,
+      "username": "alex@m.by"
+    },
+    "startTime": 1778230800,
+    "duration": 3600,
+    "endTime": 1778234400,
+    "capacity": 4,
+    "type": "test_type_2",
+    "canceled": false,
+    "reason": "reason_2",
+    "location": "test_loc_2"
+  },
+  {
+    "id": 3,
+    "trainer": {
+      "id": 1,
+      "email": "alex@m.by",
+      "password": "$2a$10$szvJPT6k5At0yZTuDI5DAek6VCnl.EhoQnKa9XyzGPeIwO4pGPfIm",
+      "roles": [
+        "USER",
+        "TRAINER",
+        "CLUB_ADMIN"
+      ],
+      "createdAt": 1765368096,
+      "profile": {
+        "bio": null,
+        "firstName": "alex",
+        "id": 1,
+        "lastName": "hard",
+        "phone": null
+      },
+      "accountNonExpired": true,
+      "accountNonLocked": true,
+      "authorities": [
+        {
+          "authority": "TRAINER"
+        },
+        {
+          "authority": "USER"
+        },
+        {
+          "authority": "CLUB_ADMIN"
+        }
+      ],
+      "credentialsNonExpired": true,
+      "enabled": true,
+      "username": "alex@m.by"
+    },
+    "startTime": 1778313600,
+    "duration": 3600,
+    "endTime": 1778317200,
+    "capacity": 4,
+    "type": "test_type_2",
+    "canceled": false,
+    "reason": "reason_2",
+    "location": "test_loc_2"
+  }
+]

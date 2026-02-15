@@ -110,3 +110,13 @@ body {
     flex-direction: row;
     margin: 20px;
 }
+
+.user-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-filter-common {
+    display: flex;
+    flex-direction: row;
+}
