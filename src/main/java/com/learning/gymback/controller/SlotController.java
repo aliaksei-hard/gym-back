@@ -1,5 +1,6 @@
 package com.learning.gymback.controller;
 
+import com.learning.gymback.dto.SlotSearchDto;
 import com.learning.gymback.entity.Slot;
 import com.learning.gymback.mapper.SlotMapper;
 import com.learning.gymback.dto.SlotCreateRequestDto;
@@ -44,6 +45,15 @@ public class SlotController {
     public ResponseEntity<List<Slot>> getAllSlots() { //todo little dto guest user on frontend
         log.info("/v1/slots/{}");
         List<Slot> slots = slotService.getAllSlots();
+
+        return slots != null ? ResponseEntity.ok(slots) : ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("v1/slots/search")
+    public ResponseEntity<List<Slot>> searchSlots(SlotSearchDto dto) {
+        log.info("v1/slots/get-by-time");
+
+        List<Slot> slots = slotService.searchSlots(dto);
 
         return slots != null ? ResponseEntity.ok(slots) : ResponseEntity.noContent().build();
     }

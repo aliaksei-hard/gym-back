@@ -1,14 +1,17 @@
 package com.learning.gymback.service;
 
 import com.learning.gymback.dto.SlotCreateRequestDto;
+import com.learning.gymback.dto.SlotSearchDto;
 import com.learning.gymback.entity.Slot;
 import com.learning.gymback.mapper.SlotMapper;
 import com.learning.gymback.repository.SlotRepository;
+import com.learning.gymback.repository.search_specs.SlotSpecification;
 import com.learning.gymback.security.constants.Role;
 import com.learning.gymback.security.entity.SecurityUser;
 import com.learning.gymback.security.repository.SecurityUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -65,7 +68,17 @@ public class SlotService {
         return true;
     }
 
-    public void checkSlotTime(SlotCreateRequestDto dto) {
+    public List<Slot> searchSlots(SlotSearchDto dto) {
+        Specification<Slot> spec = Specification.where((Specification<Slot>) null);
+
+        if (dto.trainerId() != null) {
+            spec = spec.and(SlotSpecification.trainerIdSpec(dto.trainerId()));
+        }
+
+        return slotRepository.findAll(spec);
+    }
+
+    private void checkSlotTime(SlotCreateRequestDto dto) {
         long nowEpoch = Instant.now().getEpochSecond();
         if (dto.startTime() < nowEpoch) {
             throw new IllegalArgumentException("Slot cannot be created in the past");
@@ -101,5 +114,7 @@ public class SlotService {
             throw new IllegalArgumentException("Slot must end no later than 22:00");
         }
     }
+
+
 
 }
