@@ -1,7 +1,6 @@
 package com.learning.gymback.security.controller;
 
 import com.learning.gymback.security.dto.UserRegisterResponseDto;
-import com.learning.gymback.security.entity.SecurityUser;
 import com.learning.gymback.security.dto.UserAuthRequestDto;
 import com.learning.gymback.security.dto.UserRegisterRequestDto;
 import com.learning.gymback.security.service.AuthService;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -35,7 +36,7 @@ public class AuthController {
     }
 
     @PostMapping("/v1/auth/login")
-    public ResponseEntity<String> auth(@RequestBody UserAuthRequestDto dto) {
+    public ResponseEntity<Map<String, Object>> auth(@RequestBody UserAuthRequestDto dto) {
         log.info("v1/auth/login: {}", dto);
         return ResponseEntity.ok(authService.auth(dto));
     }

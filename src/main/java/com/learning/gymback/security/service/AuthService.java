@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Slf4j
@@ -48,9 +50,18 @@ public class AuthService {
                 .build();
     }
 
-    public String auth(UserAuthRequestDto dto) {
+    public Map<String, Object> auth(UserAuthRequestDto dto) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
-        return jwtService.generateJwtToken(dto.getEmail());
+        
+        String token = jwtService.generateJwtToken(dto.getEmail());
+        SecurityUser user = securityUserRepository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
+        response.put("user", user);
+        
+        return response;
     }
 
     private SecurityUser mapToUser(UserRegisterRequestDto dto, UserProfile profile) {
