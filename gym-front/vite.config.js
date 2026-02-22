@@ -1,5 +1,6 @@
 const middleware = () => {
     return {
+
         name: 'middleware',
         apply: 'serve',
         configureServer(viteDevServer) {
@@ -24,5 +25,13 @@ const middleware = () => {
 //todo nginx same
 //todo error handling / events
 export default {
-    plugins:[middleware()]
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080',
+                changeOrigin: true,
+            }
+        }
+    },
+    plugins: [middleware()]
 }
