@@ -2,7 +2,6 @@ package com.learning.gymback.controller;
 
 import com.learning.gymback.dto.SlotSearchDto;
 import com.learning.gymback.entity.Slot;
-import com.learning.gymback.mapper.SlotMapper;
 import com.learning.gymback.dto.SlotCreateRequestDto;
 import com.learning.gymback.service.SlotService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,6 @@ public class SlotController {
 //DELETE /slots/:id — delete/cancel slot — must accept { reason, cancelledBy } and create log
 
     private final SlotService slotService;
-    private final SlotMapper slotMapper;
 
     @PostMapping("/v1/slots")
     public ResponseEntity<Slot> createSlot(@RequestBody SlotCreateRequestDto dto) {

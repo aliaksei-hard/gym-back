@@ -11,7 +11,9 @@ spring:
     hibernate:
       ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
     show-sql: true
-
+  output:
+    ansi:
+      enabled: ALWAYS
 
 server:
   servlet:

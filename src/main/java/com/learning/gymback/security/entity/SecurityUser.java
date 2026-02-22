@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 
+@ToString
 @Entity
 @Setter
 @Getter
