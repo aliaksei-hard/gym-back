@@ -9,6 +9,8 @@ import com.learning.gymback.repository.search_specs.SlotSpecification;
 import com.learning.gymback.security.constants.Role;
 import com.learning.gymback.security.entity.SecurityUser;
 import com.learning.gymback.security.repository.SecurityUserRepository;
+
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
@@ -30,6 +32,7 @@ public class SlotService {
     private final SlotMapper slotMapper;
 
 
+    @Transactional
     public Slot createSlot(SlotCreateRequestDto dto) {
 
         checkSlotTime(dto);
@@ -50,7 +53,8 @@ public class SlotService {
         slot.setTrainer(trainer);
 
         Slot saved = slotRepository.save(slot);
-
+        log.info("Slot saved: {}", saved.toString());
+        
         return saved;
     }
 
@@ -73,6 +77,22 @@ public class SlotService {
 
         if (dto.trainerId() != null) {
             spec = spec.and(SlotSpecification.trainerIdSpec(dto.trainerId()));
+        }
+
+        if (dto.startTimeEpochSeconds() != null) {
+            spec = spec.and(SlotSpecification.startTimeAfterSpec(dto.startTimeEpochSeconds()));
+        }
+
+        if (dto.endTimeEpochSeconds() != null) {
+            spec = spec.and(SlotSpecification.endTimeBeforeSpec(dto.endTimeEpochSeconds()));
+        }
+
+        if (dto.trainingType() != null) {
+            spec = spec.and(SlotSpecification.trainingTypeSpec(dto.trainingType()));
+        }
+
+        if (dto.location() != null) {
+            spec = spec.and(SlotSpecification.locationSpec(dto.location()));
         }
 
         return slotRepository.findAll(spec);

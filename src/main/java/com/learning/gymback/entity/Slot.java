@@ -4,6 +4,7 @@ import com.learning.gymback.security.entity.SecurityUser;
 import jakarta.persistence.*;
 import lombok.*;
 
+@ToString
 @Entity
 @Setter
 @Getter

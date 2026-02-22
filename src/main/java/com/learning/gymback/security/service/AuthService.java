@@ -50,6 +50,7 @@ public class AuthService {
                 .build();
     }
 
+    //TODO return only user data
     public Map<String, Object> auth(UserAuthRequestDto dto) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
         
