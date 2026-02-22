@@ -23,20 +23,7 @@ public class UserProfile {
     private String firstName;
     private String lastName;
 
-//    @OneToOne(mappedBy = "userProfile", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-//    private Trainer trainer;
     private String bio;
     private String phone;
 
-//    public void setTrainer(Trainer trainer) {
-//        if (trainer == null) {
-//            if (this.trainer != null) {
-//                this.trainer.setUserProfile(null);
-//            }
-//            this.trainer = null;
-//        } else {
-//            trainer.setUserProfile(this);
-//            this.trainer = trainer;
-//        }
-//    }
 }

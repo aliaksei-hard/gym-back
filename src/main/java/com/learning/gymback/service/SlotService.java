@@ -31,31 +31,35 @@ public class SlotService {
     private final SecurityUserRepository securityUserRepository;
     private final SlotMapper slotMapper;
 
-
     @Transactional
     public Slot createSlot(SlotCreateRequestDto dto) {
+        try {
+            checkSlotTime(dto);
 
-        checkSlotTime(dto);
+            SecurityUser trainer = securityUserRepository.findById(dto.trainerId())
+                    .orElseThrow(() -> new IllegalArgumentException("No trainer with this id found"));
 
-        SecurityUser trainer = securityUserRepository.findById(dto.trainerId())
-                .orElseThrow(() -> new IllegalArgumentException("No trainer with this id found"));
+            if (!trainer.getRoles().contains(Role.TRAINER)) {
+                throw new IllegalArgumentException("User with this Id doesn`t have role TRAINER");
+            }
 
-        if (!trainer.getRoles().contains(Role.TRAINER)) {
-            throw new IllegalArgumentException("User with this Id doesn`t have role TRAINER");
+            List<Slot> conflicts = slotRepository.findTimeConflicts(trainer, dto.startTime(), dto.endTime());
+            if (conflicts != null && !conflicts.isEmpty()) {
+                throw new IllegalArgumentException("There are already slots in this time period, reschedule");
+            }
+
+            Slot slot = slotMapper.toEntity(dto);
+            slot.setTrainer(trainer);
+
+            Slot saved = slotRepository.save(slot);
+            log.info("Slot saved: {}", saved.toString());
+
+            return saved;
+
+        } catch (Exception ex) {
+            log.error("Smth happened with slot creation");
+            throw ex;
         }
-
-        List<Slot> conflicts = slotRepository.findTimeConflicts(trainer, dto.startTime(), dto.endTime());
-        if (conflicts != null && !conflicts.isEmpty()) {
-            throw new IllegalArgumentException("There are already slots in this time period, reschedule");
-        }
-
-        Slot slot = slotMapper.toEntity(dto);
-        slot.setTrainer(trainer);
-
-        Slot saved = slotRepository.save(slot);
-        log.info("Slot saved: {}", saved.toString());
-        
-        return saved;
     }
 
     public List<Slot> getAllSlots() {
@@ -134,7 +138,5 @@ public class SlotService {
             throw new IllegalArgumentException("Slot must end no later than 22:00");
         }
     }
-
-
 
 }

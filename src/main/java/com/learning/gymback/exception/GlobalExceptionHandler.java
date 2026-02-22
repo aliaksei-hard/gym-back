@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
         ErrorObject error = new ErrorObject(
                 500,
                 ex.getMessage(),
-                "some details if needed" // Add details if needed
+                ex.getCause().getMessage() // Add details if needed
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
