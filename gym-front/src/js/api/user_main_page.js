@@ -1,31 +1,40 @@
 import calendarjs from "@calendarjs/ce";
 import { api } from '../utils/http-util.js'
 import slot_response from './mocks/slots-response.json'
-
+import { dateTimeFormatFromEpoch } from "../utils/utils.js";
+import { dateTimeFormatFromDate } from "../utils/utils.js";
+import { epochFromDateAndTime } from "../utils/utils.js";
 
 console.log('user_main_page.js loaded');
 
 const { Schedule } = calendarjs;
+let x;
 
-const arr = getSlots();
+getSlots()
+    .then(arr => {
+        x = 'hi'
+        Schedule(document.getElementById('root'), {
+            type: 'week',
+            value: getStartDate(arr),
+            weekly: false,
+            data: arr,
+            grid: 30,
+            validRange: ["07:00", "21:00"],
+            oncreate: function (self, events) {
+                //create slot
+                const event = Array.isArray(events) ? events[0] : events;
+                postEvent(event)
+            },
+            onchangeevent: function (self, newValue, oldValue) {
+                console.log('Updated:', newValue.title);
+            },
+            ondelete: function (self, event) {
+                console.log('Deleted:', event.title);
+            }
+        });
+    })
 
-Schedule(document.getElementById('root'), {
-    type: 'week',
-    value: getStartDate(arr),
-    weekly: false,
-    data: arr,
-    oncreate: function (self, events) {
-        fetchExistingSlots();
-        const event = Array.isArray(events) ? events[0] : events;
-        console.log('Created:', event.title);
-    },
-    onchangeevent: function (self, newValue, oldValue) {
-        console.log('Updated:', newValue.title);
-    },
-    ondelete: function (self, event) {
-        console.log('Deleted:', event.title);
-    }
-});
+    console.log(x)
 
 function getStartDate(arr) {
     let renderStartDate = null;
@@ -45,19 +54,32 @@ function getStartDate(arr) {
 }
 
 
-function fetchSlots() {
+async function fetchSlots() {
+    //TODO real request
+    //TODO sprosit pochemu kogda siuda dobavliayem async tablica ne otrisovyvayetsia
+    console.log("Searching for existing slots to render");
+    try {
+        const response = await api.get("v1/slots")
+
+        //prodoljat` tut
+
+        console.log("Slots found", response.data);
+    } catch (error) {
+        console.error("Failed to create slot", error)
+    }
+
     return slot_response;
 }
 
-function getSlots() {
-    const slots = fetchSlots()
+async function getSlots() {
+    const slots = await fetchSlots()
     return slots.map(slot => {
-         const event = {  // Use plain object literal, not "new Event()"
+        const event = {
             guid: slot.id,
             title: slot.type,
-            start: dateTimeFormat(slot.startTime)[1],
-            date: dateTimeFormat(slot.startTime)[0],
-            end: dateTimeFormat(slot.endTime)[1],
+            start: dateTimeFormatFromEpoch(slot.startTime)[1],
+            date: dateTimeFormatFromEpoch(slot.startTime)[0],
+            end: dateTimeFormatFromEpoch(slot.endTime)[1],
             startEpoch: slot.startTime
         };
         console.log(event);
@@ -66,21 +88,22 @@ function getSlots() {
 
 }
 
-function dateTimeFormat(epoch) {
-    const entire = new Date(epoch * 1000);
-    const iso = entire.toISOString();
-    const time = iso.split('T')[1].slice(0,5);
-    const date = iso.split('T')[0];
-    
-    return [date, time];
-}
-
-function dateTimeFormatFromDate(raw) {
-    const iso = raw.toISOString();
-    const time = iso.split('T')[1].slice(0,5);
-    const date = iso.split('T')[0];
-    
-    return [date, time];
+async function postEvent(event) {
+    console.log("Starting slot creation: ", event);
+    try {
+        await api.post("v1/slots", {
+            trainerId: 1, //TODO 
+            type: event.title,
+            location: "some_location_1",
+            startTime: epochFromDateAndTime(event.date, event.start),
+            endTime: epochFromDateAndTime(event.date, event.end),
+            duration: epochFromDateAndTime(event.date, event.end) - epochFromDateAndTime(event.date, event.start),
+            capacity: 4 //hardcoded for now
+        })
+        console.log("Slot created, ", event.title, event.start, event.end);
+    } catch (error) {
+        console.error("Failed to create slot", error)
+    }
 }
 
 

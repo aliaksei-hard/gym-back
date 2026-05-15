@@ -55,4 +55,9 @@ public class SlotController {
 
         return slots != null ? ResponseEntity.ok(slots) : ResponseEntity.noContent().build();
     }
+
+    public static void main(String[] args) {
+        int x = 11;
+        System.out.printf("Hi, %d", x);
+    }
 }
